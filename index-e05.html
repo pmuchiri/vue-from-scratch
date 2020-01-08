@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"> 
+        <title>Vue from Scratch</title>  
+    </head>
+    <body>
+        <div id="app">
+
+<!-- Start Vue-->
+           
+            <input type="text" v-model="price">
+            <div>Tax {{ moneyFormat(tax) }}</div>
+            <div>Total {{ moneyFormat(total) }}</div>
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script>
+            new Vue({
+                el: '#app',
+
+                data: {
+                    price: 100.00,
+
+                },
+
+                methods: {
+                    moneyFormat: function (price) {
+                        return '$' + price + '.00';
+                    },
+                },
+
+                computed: {
+                    tax: function () {
+                        return this.price * 0.2; 
+                    },
+                    total: function () {
+                        return parseInt(this.price) + this.tax;
+                    },
+                }
+            });
+        </script>
